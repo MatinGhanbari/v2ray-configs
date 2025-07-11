@@ -1,3 +1,34 @@
+
+<div align="right">
+  <details>
+    <summary >🌐 Language</summary>
+    <div>
+      <div align="right">
+        <p><a href="https://openaitx.github.io/view.html?user=MatinGhanbari&project=v2ray-configs&lang=en">English</a></p>
+        <p><a href="https://openaitx.github.io/view.html?user=MatinGhanbari&project=v2ray-configs&lang=zh-CN">简体中文</a></p>
+        <p><a href="https://openaitx.github.io/view.html?user=MatinGhanbari&project=v2ray-configs&lang=zh-TW">繁體中文</a></p>
+        <p><a href="https://openaitx.github.io/view.html?user=MatinGhanbari&project=v2ray-configs&lang=ja">日本語</a></p>
+        <p><a href="https://openaitx.github.io/view.html?user=MatinGhanbari&project=v2ray-configs&lang=ko">한국어</a></p>
+        <p><a href="https://openaitx.github.io/view.html?user=MatinGhanbari&project=v2ray-configs&lang=hi">हिन्दी</a></p>
+        <p><a href="https://openaitx.github.io/view.html?user=MatinGhanbari&project=v2ray-configs&lang=th">ไทย</a></p>
+        <p><a href="https://openaitx.github.io/view.html?user=MatinGhanbari&project=v2ray-configs&lang=fr">Français</a></p>
+        <p><a href="https://openaitx.github.io/view.html?user=MatinGhanbari&project=v2ray-configs&lang=de">Deutsch</a></p>
+        <p><a href="https://openaitx.github.io/view.html?user=MatinGhanbari&project=v2ray-configs&lang=es">Español</a></p>
+        <p><a href="https://openaitx.github.io/view.html?user=MatinGhanbari&project=v2ray-configs&lang=it">Itapano</a></p>
+        <p><a href="https://openaitx.github.io/view.html?user=MatinGhanbari&project=v2ray-configs&lang=ru">Русский</a></p>
+        <p><a href="https://openaitx.github.io/view.html?user=MatinGhanbari&project=v2ray-configs&lang=pt">Português</a></p>
+        <p><a href="https://openaitx.github.io/view.html?user=MatinGhanbari&project=v2ray-configs&lang=nl">Nederlands</a></p>
+        <p><a href="https://openaitx.github.io/view.html?user=MatinGhanbari&project=v2ray-configs&lang=pl">Polski</a></p>
+        <p><a href="https://openaitx.github.io/view.html?user=MatinGhanbari&project=v2ray-configs&lang=ar">العربية</a></p>
+        <p><a href="https://openaitx.github.io/view.html?user=MatinGhanbari&project=v2ray-configs&lang=fa">فارسی</a></p>
+        <p><a href="https://openaitx.github.io/view.html?user=MatinGhanbari&project=v2ray-configs&lang=tr">Türkçe</a></p>
+        <p><a href="https://openaitx.github.io/view.html?user=MatinGhanbari&project=v2ray-configs&lang=vi">Tiếng Việt</a></p>
+        <p><a href="https://openaitx.github.io/view.html?user=MatinGhanbari&project=v2ray-configs&lang=id">Bahasa Indonesia</a></p>
+      </div>
+    </div>
+  </details>
+</div>
+
 # ♾️ Free V2ray Configurations For All
 [![Stars](https://img.shields.io/github/stars/MatinGhanbari/v2ray-configs?style=flat-square)](https://github.com/MatinGhanbari/v2ray-configs/stargazers)
 ![Last Updated](https://img.shields.io/github/last-commit/MatinGhanbari/v2ray-configs?style=flat-square) [![MIT](https://img.shields.io/badge/license-MIT-green?style=flat-square)](https://lbesson.mit-license.org/) ![Size](https://img.shields.io/github/repo-size/MatinGhanbari/v2ray-configs?style=flat-square)
