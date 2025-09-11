@@ -1,0 +1,9 @@
+#profile-title: base64:8J+XvSBiMm4uaXIvdjJyYXktY29uZiB8IHdhcnAg8J+MsQ==
+#subscription-userinfo: upload=5368709120; download=5368709120; total=107374182400; expire=1853217508
+#profile-web-page-url: https://github.com/MatinGhanbari/v2ray-configs
+#support-url: https://github.com/MatinGhanbari/v2ray-configs
+#profile-update-interval: 1
+warp://auto/?ifp=10-20&ifps=10-20&ifpd=1-2&ifpm=m4#WarpInWarp ⭐️&&detour=warp://auto#Warp 🇮🇷 
+warp://p1@188.114.97.170:894?ifp=40-80&ifps=40-100&ifpd=4-8&ifpm=m4#Warp2 🇮🇷&&detour=warp://p2@188.114.97.170:894#WarpInWarp 🇩🇪
+warp://@auto/?ifp=1-3&ifpm=h04FA0A#Warp3 🇮🇷&&detour=warp://@auto/?ifp=1-3&ifpm=h04FA0A#WarpInWarp 🇩🇪
+#warp://auto6?ifp=4-8&ifps=40-80&ifpd=20-40&ifpm=m4#Warp4 🇮🇷

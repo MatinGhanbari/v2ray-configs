@@ -1,0 +1,2 @@
+pybase64==1.4.1
+requests==2.32.4

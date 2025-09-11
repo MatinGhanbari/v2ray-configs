@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Free V2ray Configurations</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="manifest" href="../manifest.json" />
+    <meta
+      name="keywords"
+      content="vpn, v2ray, v2rayN, vmess, vless, developer, trojan, ss, ssr, hiddify"
+    />
+    <meta
+      name="description"
+      content="Community-maintained repository offering free v2ray configs to help you browse securely and privately"
+    />
+    <meta property="og:title" content="v2rayNG Config" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:description"
+      content="Community-maintained repository offering free v2ray configs to help you browse securely and privately"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="icon" type="image/x-icon" href="../favicon.ico" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body class="dark-theme-variables">
+    <div id="scroll-to-bottom" class="scroll-to-bottom bx-tada">
+      <i class="bx bxs-chevron-down" style="font-size: x-large"></i>
+    </div>
+
+    <div id="container" class="container">
+      <!-----------ASIDE------------->
+      <aside>
+        <div class="top">
+          <div class="logo">
+            <h2><span class="typo-logo">V2ray</span>Configs</h2>
+          </div>
+          <div class="close" id="close-btn">
+            <i class="bx bx-x"></i>
+          </div>
+        </div>
+
+        <!----------SIDEBAR---------->
+        <div class="sidebar">
+          <a
+            style="position: fixed; bottom: 20px; left: 15px"
+            href="https://github.com/MatinGhanbari/v2ray-configs"
+            target="_blank"
+          >
+            <i class="bx bxl-github"></i>
+            <h3>Github Repo&nbsp;&nbsp;<i class="bx bx-link-external"></i></h3>
+          </a>
+
+          <br />
+
+          <a href="../index.html">
+            <i class="bx bx-radio-circle"></i>
+            <h3>All Configs</h3>
+          </a>
+
+          <a href="supersub.html">
+            <i class="bx bx-diamond"></i>
+            <h3>Super Sub</h3>
+          </a>
+
+          <a href="subs.html">
+            <i class="bx bx-list-plus"></i>
+            <h3>Sub links</h3>
+          </a>
+
+          <a href="#" class="active">
+            <i class="bx bx-radio-circle-marked"></i>
+            <h3>Vless</h3>
+          </a>
+
+          <a href="vmess.html">
+            <i class="bx bx-radio-circle"></i>
+            <h3>Vmess</h3>
+          </a>
+
+          <a href="trojan.html">
+            <i class="bx bx-radio-circle"></i>
+            <h3>Trojan</h3>
+          </a>
+
+          <a href="ss.html">
+            <i class="bx bx-radio-circle"></i>
+            <h3>SS</h3>
+          </a>
+        </div>
+      </aside>
+      <!---------END OF ASIDE--------->
+
+      <!------------MIDDLE ------------>
+      <main>
+        <!----------TOP -------->
+        <h2>
+          <i class="bx bx-link bx-flashing"></i>&nbsp;&nbsp;Vless Configs
+          <span class="total-count"></span>
+          <span
+            style="display: inline; font-style: normal; font-size: larger"
+            class="primary"
+            id="refresh-list"
+            ><i id="refresh-i" class="bx bx-refresh"></i
+          ></span>
+        </h2>
+
+        <!---------INSIGHTS------->
+        <div class="recent-order">
+          <div class="sub"></div>
+        </div>
+
+        <!-------------ORDERS------------>
+        <div class="recent-order">
+          <table>
+            <!-------TABLE HEADING------->
+            <thead>
+              <tr>
+                <!--------TABLE HEAD ROW---->
+                <th>#</th>
+                <th>Protocol</th>
+                <th>Config</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <!-------TABLE BODY------->
+            <tbody></tbody>
+          </table>
+          <span
+            ><div id="show_all" class="show-all">
+              <i class="bx bx-down-arrow-alt bx-fade-down"></i>&nbsp;&nbsp;Show
+              All&nbsp;&nbsp;<i
+                class="bx bx-down-arrow-alt bx-fade-down"
+              ></i></div
+          ></span>
+        </div>
+      </main>
+      <!-------------END OF MIDDLE --------->
+
+      <!---------RIGHT--------->
+      <div class="right">
+        <!--------TOP-->
+        <div class="top">
+          <!---MENU ICON-->
+          <button id="menu-btn">
+            <i class="bx bx-menu"></i>
+          </button>
+        </div>
+        <!-------END OF TOP------>
+
+        <!---------RECENT UPDATES------>
+        <div class="recent-updates">
+          <h2><i class="bx bx-time bx-tada"></i>&nbsp;&nbsp;Recent Updates</h2>
+
+          <!------UPDATE BOX----->
+          <div class="updates" style="padding-bottom: 0.5rem">
+            <div class="update">
+              <div class="profile-photo">
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/GitHub_Invertocat_Logo.svg/1200px-GitHub_Invertocat_Logo.svg.png"
+                  alt="GitHub Action User"
+                />
+              </div>
+              <div class="message">
+                <p>
+                  <b
+                    >GitHub Action User&nbsp;<i
+                      class="bx bxs-check-circle"
+                    ></i></b
+                  ><br />
+                  🔄 Auto-update configs
+                </p>
+                <small class="text-muted"
+                  ><i class="bx bx-time-five"></i>&nbsp;10 minutes ago</small
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-------END OF RECENT UPDATES---->
+
+        <!---------SALES ANAYTICS --------->
+        <div class="sales-analytics">
+          <h2>
+            <i class="bx bx-medal bx-tada"></i>&nbsp;&nbsp;Top Contributors
+          </h2>
+
+          <!-----ONLINE CUSTOMERS----->
+          <div id="contributors"></div>
+
+          <!----------ADD PRODUCTS------->
+          <a
+            href="https://github.com/MatinGhanbari/v2ray-configs"
+            target="_blank"
+          >
+            <div class="item add-product">
+              <div>
+                <i class="bx-add"></i>
+                <h3>+ Contribute</h3>
+              </div>
+            </div>
+          </a>
+        </div>
+        <!------END OF SALES ANALYTICS------->
+      </div>
+      <!---------END OF RIGHT------->
+    </div>
+  </body>
+  <script src="../assets/js/utils/v2RayConfigTester.js"></script>
+  <script src="../assets/js/shared.js"></script>
+  <script src="../assets/js/pages/vless.js"></script>
+</html>

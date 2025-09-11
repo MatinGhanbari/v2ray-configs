@@ -1,0 +1,13 @@
+# Idea files
+.idea
+.vscode
+__pycache__/
+
+# Virtual env files
+.venv
+
+# Env files
+.env
+.env.*
+
+*.db
