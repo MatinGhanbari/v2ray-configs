@@ -110,7 +110,7 @@ https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions
 
 
 ## 📱 V2ray Clients
-- [Hiddify-Next](https://github.com/hiddify/hiddify-next)
+- [Hiddify App](https://github.com/hiddify/hiddify-app)
 - [Nekoray](https://github.com/MatsuriDayo/nekoray)
 
 ## ✍️ Contributing
