@@ -1,11 +1,13 @@
 # ♾️ Free V2ray Configurations For All
-[![Update V2Ray Configs](https://github.com/MatinGhanbari/v2ray-configs/actions/workflows/update-configs.yml/badge.svg?branch=main)](https://github.com/MatinGhanbari/v2ray-configs/actions/workflows/update-configs.yml)
-[![Deploy static content to Pages](https://github.com/MatinGhanbari/v2ray-configs/actions/workflows/static.yml/badge.svg?branch=main)](https://github.com/MatinGhanbari/v2ray-configs/actions/workflows/static.yml)
+[![Update V2Ray Configs](https://img.shields.io/github/actions/workflow/status/MatinGhanbari/v2ray-configs/update-configs.yml?branch=main&style=for-the-badge&label=Update%20V2Ray%20Configs
+)](https://github.com/MatinGhanbari/v2ray-configs/actions/workflows/update-configs.yml)
+[![Deploy static content to Pages](https://img.shields.io/github/actions/workflow/status/MatinGhanbari/v2ray-configs/static.yml?branch=main&style=for-the-badge&label=Deploy%20static%20content%20to%20Pages
+)](https://github.com/MatinGhanbari/v2ray-configs/actions/workflows/static.yml)
 
-[![Stars](https://img.shields.io/github/stars/MatinGhanbari/v2ray-configs?style=for-the-badge)](https://github.com/MatinGhanbari/v2ray-configs/stargazers)
 ![Last Updated](https://img.shields.io/github/last-commit/MatinGhanbari/v2ray-configs?style=for-the-badge) 
 [![MIT](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)](https://lbesson.mit-license.org/) 
 ![Size](https://img.shields.io/github/repo-size/MatinGhanbari/v2ray-configs?style=for-the-badge)
+[![Stars](https://img.shields.io/github/stars/MatinGhanbari/v2ray-configs?style=for-the-badge&label=Stars%20⭐)](https://github.com/MatinGhanbari/v2ray-configs/stargazers)
 
 <div align="left">
   <details>
