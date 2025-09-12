@@ -42,13 +42,19 @@ jobs:
 
       - name: Get current date
         id: date
-        run: echo "::set-output name=date::$(date -u +'%Y-%m-%d %H:%M:%S UTC')"
-        
+        run: echo "::set-output name=date::$(date -u +'%m-%d %H:%M:%S UTC')"
+
+      - name: Generate random emoji
+        id: emoji
+        run: |
+          EMOJIS=("⚡" "🔥" "✨" "🚀" "🌟" "🐳" "📦" "🔧" "🌐" "🌀" "💡")
+          echo "emoji=${EMOJIS[$RANDOM % ${#EMOJIS[@]}]}" >> $GITHUB_OUTPUT
+          
       - name: Commit and push files
         uses: EndBug/add-and-commit@v7
         with:
           push: "https://github.com/MatinGhanbari/v2ray-configs.git"
-          message: "✔️ [${{ steps.date.outputs.date }}] Update v2ray configs"
+          message: "${{ steps.emoji.outputs.emoji }} [${{ steps.date.outputs.date }}] Update v2ray configs"
           author_email: "actions@github.com"
           author_name: "Github Actions"
           add: "subscriptions public"
