@@ -1,1 +1,24 @@
-[]
+[
+    {
+        "login": "actions-user",
+        "id": 65916846,
+        "node_id": "MDQ6VXNlcjY1OTE2ODQ2",
+        "avatar_url": "https://avatars.githubusercontent.com/u/65916846?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/actions-user",
+        "html_url": "https://github.com/actions-user",
+        "followers_url": "https://api.github.com/users/actions-user/followers",
+        "following_url": "https://api.github.com/users/actions-user/following{/other_user}",
+        "gists_url": "https://api.github.com/users/actions-user/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/actions-user/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/actions-user/subscriptions",
+        "organizations_url": "https://api.github.com/users/actions-user/orgs",
+        "repos_url": "https://api.github.com/users/actions-user/repos",
+        "events_url": "https://api.github.com/users/actions-user/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/actions-user/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false,
+        "contributions": 2
+    }
+]
