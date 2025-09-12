@@ -47,7 +47,7 @@ jobs:
       - name: Generate random emoji
         id: emoji
         run: |
-          EMOJIS=("⚡" "🔥" "✨" "🚀" "🌟" "🐳" "📦" "🔧" "🌐" "🌀" "💡")
+          EMOJIS=("⚡" "🔥" "✨" "🚀" "🌟" "🐳" "🔧" "🌐" "🌀" "💡" "🐈" "🗿" "🧪")
           echo "emoji=${EMOJIS[$RANDOM % ${#EMOJIS[@]}]}" >> $GITHUB_OUTPUT
           
       - name: Commit and push files
