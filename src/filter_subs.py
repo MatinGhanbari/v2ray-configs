@@ -9,7 +9,7 @@ def filter_subs():
     content_manager = ContentManager()
     _, _, _, output_folder = ensure_directories_exist()
 
-    protocols = SETTINGS['protocols'][:-1]
+    protocols = SETTINGS['protocols'][:]
     protocol_data = {protocol: content_manager.get_filtered(protocol=protocol) for protocol in protocols}
 
     raw_repo = SETTINGS['raw_repo']

@@ -17,7 +17,8 @@ class ContentManager:
             "ss": "8J+QhSBiMm4uaXIvdjJyYXktY29uZiB8IHNzIPCfmI8=",
             "ssr": "8J+QhSBiMm4uaXIvdjJyYXktY29uZiB8IHNzciDwn5iP",
             "tuic": "8J+QsyBiMm4uaXIvdjJyYXktY29uZiB8IHR1aWMg8J+Yjw==",
-            "hy2": "8J+mniBiMm4uaXIvdjJyYXktY29uZiB8IGh5MiDwn5iP"
+            "hy2": "8J+mniBiMm4uaXIvdjJyYXktY29uZiB8IGh5MiDwn5iP",
+            "hysteria2": "8J+mniBiMm4uaXIvdjJyYXktY29uZiB8IGh5MiDwn5iP"
         }
 
     @staticmethod

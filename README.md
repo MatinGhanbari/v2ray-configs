@@ -1,9 +1,13 @@
 # ♾️ Free V2ray Configurations For All
-[![Update V2Ray Configs](https://github.com/MatinGhanbari/v2ray-configs/actions/workflows/update-configs.yml/badge.svg?branch=main)](https://github.com/MatinGhanbari/v2ray-configs/actions/workflows/update-configs.yml)
-[![Deploy static content to Pages](https://github.com/MatinGhanbari/v2ray-configs/actions/workflows/static.yml/badge.svg?branch=main)](https://github.com/MatinGhanbari/v2ray-configs/actions/workflows/static.yml)
+[![Update V2Ray Configs](https://img.shields.io/github/actions/workflow/status/MatinGhanbari/v2ray-configs/update-configs.yml?branch=main&style=for-the-badge&label=Update%20V2Ray%20Configs
+)](https://github.com/MatinGhanbari/v2ray-configs/actions/workflows/update-configs.yml)
+[![Deploy static content to Pages](https://img.shields.io/github/actions/workflow/status/MatinGhanbari/v2ray-configs/static.yml?branch=main&style=for-the-badge&label=Deploy%20static%20content%20to%20Pages
+)](https://github.com/MatinGhanbari/v2ray-configs/actions/workflows/static.yml)
 
-[![Stars](https://img.shields.io/github/stars/MatinGhanbari/v2ray-configs?style=flat-square)](https://github.com/MatinGhanbari/v2ray-configs/stargazers)
-![Last Updated](https://img.shields.io/github/last-commit/MatinGhanbari/v2ray-configs?style=flat-square) [![MIT](https://img.shields.io/badge/license-MIT-green?style=flat-square)](https://lbesson.mit-license.org/) ![Size](https://img.shields.io/github/repo-size/MatinGhanbari/v2ray-configs?style=flat-square)
+![Last Updated](https://img.shields.io/github/last-commit/MatinGhanbari/v2ray-configs?style=for-the-badge) 
+[![MIT](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)](https://lbesson.mit-license.org/) 
+![Size](https://img.shields.io/github/repo-size/MatinGhanbari/v2ray-configs?style=for-the-badge)
+[![Stars](https://img.shields.io/github/stars/MatinGhanbari/v2ray-configs?style=for-the-badge&label=Stars%20⭐)](https://github.com/MatinGhanbari/v2ray-configs/stargazers)
 
 <div align="left">
   <details>
@@ -78,34 +82,27 @@ https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions
 ```
 
 ### ⛓️ By Protocol Subscriptions
-- VMess: 
+- **Hy2** **(Recommended)**: 
+```
+https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/filtered/subs/hysteria2.txt
+```
+- **VMess**: 
 ```
 https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/filtered/subs/vmess.txt
 ```
-- VLess: 
+- **VLess**: 
 ```
 https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/filtered/subs/vless.txt
 ```
-- Trojan: 
+- **Trojan**: 
 ```
 https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/filtered/subs/trojan.txt
 ```
-- SSR: 
-```
-https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/filtered/subs/ssr.txt
-```
-- SS: 
+- **SS**: 
 ```
 https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/filtered/subs/ss.txt
 ```
-- Tuic: 
-```
-https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/filtered/subs/tuic.txt
-```
-- Hy2: 
-```
-https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/filtered/subs/hy2.txt
-```
+
 
 ## Stats
 [![Stars](https://starchart.cc/MatinGhanbari/v2ray-configs.svg?variant=adaptive)](https://github.com/MatinGhanbari/v2ray-configs/stargazers)
@@ -115,7 +112,7 @@ https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions
 
 
 ## 📱 V2ray Clients
-- [Hiddify-Next](https://github.com/hiddify/hiddify-next)
+- [Hiddify App](https://github.com/hiddify/hiddify-app)
 - [Nekoray](https://github.com/MatsuriDayo/nekoray)
 
 ## ✍️ Contributing
