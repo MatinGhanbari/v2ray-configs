@@ -118,11 +118,15 @@ https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions
 ## ✍️ Contributing
 If you have a V2ray configuration file that you would like to contribute to this repository, simply create a new pull request and we will review it.
 
-## License
+## 📃 License Clarification
 
-Source code: This repository's source code (scripts, automation, documentation) is licensed under the MIT License. See LICENSE for details.
+Source Code: All source code, scripts, and documentation in this repository are licensed under the MIT License. See LICENSE for the full text. You may use, modify, and redistribute the code, including for commercial purposes, provided you retain the original copyright notice and permission notice.
 
-Configurations: The V2Ray configuration files (VMess, VLESS, Trojan, etc.) are aggregated from public sources and are not covered by the MIT license. I do not own these configurations and cannot grant any license for their use. Users are responsible for verifying the terms of use of each original source.
+Configurations: The V2Ray configuration files (VMess, VLESS, Trojan, Shadowsocks, etc.) published in this repository are aggregated from public internet sources and public GitHub repositories. These configurations are NOT covered by the MIT License. I do not own these configurations, and I cannot grant any license or permission for their use. Any party wishing to use these configurations must independently verify and obtain permission from the original publisher or server operator.
+
+Network Services: The servers referenced in the configurations are operated by third parties. I have no control over and grant no permission regarding these services.
+
+No Warranty: The code and configurations are provided "as is", without warranty of any kind.
 
 
 ## 🤍 Special Thanks To
