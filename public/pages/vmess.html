@@ -29,9 +29,17 @@
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
     />
+    <script>
+      (function () {
+        try {
+          if (localStorage.getItem("theme") === "light") return;
+        } catch (e) {}
+        document.documentElement.classList.add("dark-theme-variables");
+      })();
+    </script>
   </head>
 
-  <body class="dark-theme-variables">
+  <body>
     <div id="scroll-to-bottom" class="scroll-to-bottom bx-tada">
       <i class="bx bxs-chevron-down" style="font-size: x-large"></i>
     </div>
@@ -62,7 +70,7 @@
           <br />
 
           <a href="../index.html">
-            <i class="bx bx-radio-circle"></i>
+            <i class="bx bx-grid-alt"></i>
             <h3>All Configs</h3>
           </a>
 
@@ -77,22 +85,22 @@
           </a>
 
           <a href="vless.html">
-            <i class="bx bx-radio-circle"></i>
+            <i class="bx bx-shield-quarter"></i>
             <h3>Vless</h3>
           </a>
 
           <a href="#" class="active">
-            <i class="bx bx-radio-circle-marked"></i>
+            <i class="bx bx-network-chart"></i>
             <h3>Vmess</h3>
           </a>
 
           <a href="trojan.html">
-            <i class="bx bx-radio-circle"></i>
+            <i class="bx bx-ghost"></i>
             <h3>Trojan</h3>
           </a>
 
           <a href="ss.html">
-            <i class="bx bx-radio-circle"></i>
+            <i class="bx bx-lock-alt"></i>
             <h3>SS</h3>
           </a>
         </div>
@@ -136,11 +144,7 @@
             <tbody></tbody>
           </table>
           <span
-            ><div id="show_all" class="show-all">
-              <i class="bx bx-down-arrow-alt bx-fade-down"></i>&nbsp;&nbsp;Show
-              All&nbsp;&nbsp;<i
-                class="bx bx-down-arrow-alt bx-fade-down"
-              ></i></div
+            ><div id="show_all" class="show-all" style="display: none"></div
           ></span>
         </div>
       </main>
@@ -150,6 +154,10 @@
       <div class="right">
         <!--------TOP-->
         <div class="top">
+          <div class="theme-toggle" id="theme-toggle" title="Toggle light / dark theme" role="button" aria-label="Toggle theme">
+            <i class="bx bx-sun"></i>
+            <i class="bx bx-moon active"></i>
+          </div>
           <!---MENU ICON-->
           <button id="menu-btn">
             <i class="bx bx-menu"></i>
@@ -166,8 +174,11 @@
             <div class="update">
               <div class="profile-photo">
                 <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/GitHub_Invertocat_Logo.svg/1200px-GitHub_Invertocat_Logo.svg.png"
+                  src="../assets/images/github.svg"
                   alt="GitHub Action User"
+                  width="45"
+                  height="45"
+                  decoding="async"
                 />
               </div>
               <div class="message">
@@ -177,7 +188,7 @@
                       class="bx bxs-check-circle"
                     ></i></b
                   ><br />
-                  🔄 Auto-update configs
+                  <i class="bx bx-sync"></i> Auto-update configs
                 </p>
                 <small class="text-muted"
                   ><i class="bx bx-time-five"></i>&nbsp;10 minutes ago</small
@@ -204,8 +215,8 @@
           >
             <div class="item add-product">
               <div>
-                <i class="bx-add"></i>
-                <h3>+ Contribute</h3>
+                <i class="bx bx-plus"></i>
+                <h3>Contribute</h3>
               </div>
             </div>
           </a>

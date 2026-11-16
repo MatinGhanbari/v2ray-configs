@@ -1,113 +1,172 @@
+/*
+ * V2Ray config parser + latency tester.
+ *
+ * NOTE: a browser cannot open raw TCP sockets or run a real proxy handshake, so the
+ * "ping" here is an estimate: the time a TLS connection attempt to host:port takes
+ * (fetch with mode "no-cors"). Timeout = dead, quick response/error = reachable.
+ * It is good for sorting/filtering, not a guarantee that the config really works.
+ */
 class V2RayConfigTester {
-    constructor(configs) {
-        this.configs = configs;
-        this.protocols = ["vmess", "vless", "trojan", "ss"];
-        this.results = {};
-    }
+  constructor(configs = []) {
+    this.configs = configs;
+    this.protocols = ["vmess", "vless", "trojan", "ss"];
+    this.cache = new Map(); // "host:port" -> Promise<number|null>
+    this.timeout = 3000;
+    this.concurrency = 8;
+    this._token = 0;
+  }
 
-    getProtocol(config) {
-        let split = config.split("://");
-        return split[0] || "";
-    }
+  /* ---------- parsing ---------- */
 
-    findIp(config) {
-        try {
-            let ipRegex = /\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b/;
-            let match = config.match(ipRegex);
-            return match ? match[0] : "";
-        } catch {
-            return "";
+  safeAtob(str) {
+    try {
+      let s = String(str).trim().replace(/-/g, "+").replace(/_/g, "/");
+      while (s.length % 4) s += "=";
+      return decodeURIComponent(escape(atob(s)));
+    } catch {
+      try {
+        return atob(str);
+      } catch {
+        return "";
+      }
+    }
+  }
+
+  getProtocol(config) {
+    const i = config.indexOf("://");
+    return i > 0 ? config.substring(0, i).toLowerCase() : "";
+  }
+
+  /** Returns {protocol, host, port, network, security, sni, name} or null. */
+  parse(config) {
+    config = (config || "").trim();
+    const protocol = this.getProtocol(config);
+    if (!this.protocols.includes(protocol)) return null;
+    const out = {
+      protocol,
+      host: "",
+      port: 443,
+      network: "tcp",
+      security: "none",
+      sni: "",
+      name: "",
+    };
+    try {
+      if (protocol === "vmess") {
+        const j = JSON.parse(this.safeAtob(config.slice(8).split("#")[0]));
+        out.host = j.add || "";
+        out.port = parseInt(j.port) || 443;
+        out.network = j.net || "tcp";
+        out.security = j.tls === "tls" ? "tls" : "none";
+        out.sni = j.sni || j.host || "";
+        out.name = j.ps || "";
+      } else {
+        let rest = config.slice(protocol.length + 3);
+        const hashIdx = rest.indexOf("#");
+        if (hashIdx >= 0) {
+          out.name = decodeURIComponent(rest.slice(hashIdx + 1));
+          rest = rest.slice(0, hashIdx);
         }
-    }
-
-    async ping(ip) {
-        const timeout = 3000;
-        const url = `https://${ip}/generate_204`;
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), timeout);
-        let isReachable = false;
-        const startTime = performance.now();
-
-        try {
-            await fetch(url, { signal: controller.signal });
-            isReachable = true;
-        } catch (error) {
-            if (error.name !== "AbortError") {
-                isReachable = true;
-            }
+        if (protocol === "ss" && !rest.includes("@")) {
+          // fully base64: method:pass@host:port
+          rest = this.safeAtob(rest.split("?")[0]);
         }
-
-        clearTimeout(timeoutId);
-        const duration = performance.now() - startTime;
-        return isReachable ? Math.floor(duration / 5) : null;
+        const u = new URL("http://" + rest.replace(/^[^@]*@/, (m) => "x@"));
+        out.host = u.hostname.replace(/^\[|\]$/g, "");
+        out.port = parseInt(u.port) || 443;
+        const p = u.searchParams;
+        out.network = p.get("type") || "tcp";
+        out.security =
+          p.get("security") || (protocol === "trojan" ? "tls" : "none");
+        out.sni = p.get("sni") || p.get("host") || "";
+      }
+    } catch {
+      return null;
     }
+    return out.host ? out : null;
+  }
 
-    async testAll() {
-        for (let config of this.configs) {
-            let protocol = this.getProtocol(config);
-            if (!this.protocols.includes(protocol)) {
-                this.results[config] = { error: "Invalid protocol" };
-                continue;
-            }
+  /* ---------- scoring ---------- */
 
-            let ip = this.findIp(config);
-            if (!ip) {
-                ip = this.findIp(atob(config.toString().split("://")[1]));
-                if (!ip) {
-                    this.results[config] = { error: "IP not found" };
-                    continue;
-                }
-            }
+  /** Higher = better. Dead configs get -1. */
+  score(info, ping) {
+    if (ping == null) return -1;
+    let s = 1000 - Math.min(ping, 1000); // lower ping, higher score
+    if (info.security === "reality") s += 150;
+    else if (info.security === "tls") s += 100;
+    if (info.port === 443) s += 60;
+    if (info.network === "ws" || info.network === "grpc") s += 30;
+    return s;
+  }
 
-            let pingTime = await this.ping(ip);
-            this.results[config] = pingTime !== null
-                ? { ip, ping: pingTime + " ms" }
-                : { ip, error: "No ping response" };
-        }
-        return this.results;
+  /* ---------- pinging ---------- */
+
+  async _once(host, port) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), this.timeout);
+    const start = performance.now();
+    try {
+      await fetch(`https://${host}:${port}/generate_204`, {
+        mode: "no-cors",
+        cache: "no-store",
+        signal: controller.signal,
+      });
+    } catch (e) {
+      if (e.name === "AbortError") {
+        clearTimeout(timer);
+        return null;
+      }
     }
+    clearTimeout(timer);
+    return performance.now() - start;
+  }
 
-    async test(config) {
-        let protocol = this.getProtocol(config);
-        if (!this.protocols.includes(protocol)) {
-            this.results[config] = { error: "Invalid protocol" };
-            return "x";
-        }
-
-        let ip = this.findIp(config);
-        if (!ip) {
-            ip = this.findIp(atob(config.toString().split("://")[1]));
-            if (!ip) {
-                this.results[config] = { error: "IP not found" };
-                return "x";
-            }
-        }
-
-        let pingTime = await this.ping(ip);
-
-        return pingTime !== null
-        ? pingTime + "ms" 
-        :  "x";
+  /** Two attempts, keep the smaller (first one includes DNS + handshake cost). */
+  async ping(host, port) {
+    const key = `${host}:${port}`;
+    if (!this.cache.has(key)) {
+      this.cache.set(
+        key,
+        (async () => {
+          const a = await this._once(host, port);
+          if (a == null) return null;
+          const b = await this._once(host, port);
+          return Math.round(Math.min(a, b == null ? a : b));
+        })()
+      );
     }
+    return this.cache.get(key);
+  }
 
-    async updateConfigPing(config, index) {
-        const element = document.querySelector(`#conf${index}`);
-        try {
-            let res = await this.test(config);
-            if (res!=="x"){
-                element.classList.remove("warning");
-                element.classList.add("success");
-            }else{
-                element.classList.remove("warning");
-                element.classList.add("danger");
-            }
-            element.textContent = `${res.toString()}`;
-        } catch (error) {
-            element.classList.remove("warning");
-            element.classList.add("danger");
-            element.textContent = 'x';
-        }
-    }
+  /**
+   * Tests items ({info}) with a worker pool.
+   * onResult(item, ping) is called as each finishes; returns when all done or cancelled.
+   */
+  async testItems(items, onResult, onProgress) {
+    const token = ++this._token;
+    const queue = items.filter((it) => it.info && it.ping === undefined);
+    let done = 0;
+    const total = queue.length;
+    const worker = async () => {
+      while (queue.length && token === this._token) {
+        const it = queue.shift();
+        const ping = await this.ping(it.info.host, it.info.port);
+        if (token !== this._token) return;
+        it.ping = ping;
+        done++;
+        onResult && onResult(it, ping);
+        onProgress && onProgress(done, total);
+      }
+    };
+    await Promise.all(
+      Array.from({ length: Math.min(this.concurrency, total) }, worker)
+    );
+    return token === this._token;
+  }
+
+  cancel() {
+    this._token++;
+  }
 }
 
 const tester = new V2RayConfigTester([]);

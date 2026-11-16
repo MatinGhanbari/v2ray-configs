@@ -39,7 +39,7 @@ show_all?.addEventListener("click", function () {
 const sub = document.querySelector(".sub");
 if (isMobileDevice()) {
   sub.innerHTML += `
-  <div class="sub-title" style="width: 30%">⚡ SubLink :</div>
+  <div class="sub-title" style="width: 30%"><i class="bx bxs-bolt warning"></i> SubLink :</div>
   <div
     class="sub-link"
     onclick="copyText('https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/v2ray/subs/vmess.txt')"
@@ -49,7 +49,7 @@ if (isMobileDevice()) {
 `;
 } else {
   sub.innerHTML += `
-  <div class="sub-title">⚡ SubLink :</div>
+  <div class="sub-title"><i class="bx bxs-bolt warning"></i> SubLink :</div>
   <div
     class="sub-link"
     onclick="copyText('https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/v2ray/subs/vmess.txt')"
