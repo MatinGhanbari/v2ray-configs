@@ -3,8 +3,9 @@
  *
  * NOTE: a browser cannot open raw TCP sockets or run a real proxy handshake, so the
  * "ping" here is an estimate: the time a TLS connection attempt to host:port takes
- * (fetch with mode "no-cors"). Timeout = dead, quick response/error = reachable.
- * It is good for sorting/filtering, not a guarantee that the config really works.
+ * (fetch with mode "no-cors"). A rejected fetch (timeout, DNS failure, reset, TLS
+ * error) counts as dead; a resolved fetch counts as reachable. It is good for
+ * sorting/filtering, not a guarantee that the config really works.
  */
 class V2RayConfigTester {
   constructor(configs = []) {
@@ -111,11 +112,13 @@ class V2RayConfigTester {
         cache: "no-store",
         signal: controller.signal,
       });
-    } catch (e) {
-      if (e.name === "AbortError") {
-        clearTimeout(timer);
-        return null;
-      }
+    } catch {
+      // Any rejection means we could not reach host:port: timeout (AbortError),
+      // DNS failure (ERR_NAME_NOT_RESOLVED), connection reset, TLS error.
+      // A rejected fetch never tells us *why*, so treat it as dead — a dead host
+      // must never be reported as alive, or "Find best" ranks it first.
+      clearTimeout(timer);
+      return null;
     }
     clearTimeout(timer);
     return performance.now() - start;

@@ -87,6 +87,7 @@ function applyTheme(dark) {
   if (t) {
     t.querySelector(".bx-sun").classList.toggle("active", !dark);
     t.querySelector(".bx-moon").classList.toggle("active", dark);
+    t.setAttribute("aria-pressed", String(dark));
   }
   try {
     localStorage.setItem("theme", dark ? "dark" : "light");
@@ -100,6 +101,13 @@ function applyTheme(dark) {
   t.addEventListener("click", () =>
     applyTheme(!document.documentElement.classList.contains("dark-theme-variables"))
   );
+  // role="button" on a div gets no keyboard activation for free.
+  t.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") {
+      e.preventDefault();
+      t.click();
+    }
+  });
 })();
 
 /* ------------------------------------------------------------------ */
@@ -211,7 +219,8 @@ function renderRows() {
           <td>${i.protocol}</td>
           <td class="cfg-cell">${cfg}</td>
           <td id="conf${it.id}">${statusCellHtml(it)}</td>
-          <td class="primary clickable copy-btn" data-id="${it.id}" title="Copy config"><i class="bx bx-copy"></i></td>
+          <td class="primary clickable copy-btn" data-id="${it.id}" role="button" tabindex="0"
+              title="Copy config" aria-label="Copy config"><i class="bx bx-copy" aria-hidden="true"></i></td>
         </tr>`;
       })
       .join("");
@@ -278,7 +287,7 @@ async function runTests(items, resortAtEnd = true) {
   state.testing = false;
   setProgress(1, 1);
   renderStats();
-  if (resortAtEnd) applyFilters(false);
+  if (resortAtEnd && finished) applyFilters(false);
 }
 
 function toggleTest() {
@@ -446,6 +455,13 @@ function buildToolbar() {
     const b = e.target.closest(".copy-btn");
     if (b) copyText(state.items[b.dataset.id].raw);
   });
+  document.querySelector("tbody").addEventListener("keydown", (e) => {
+    if (e.key !== "Enter" && e.key !== " " && e.key !== "Spacebar") return;
+    const b = e.target.closest(".copy-btn");
+    if (!b) return;
+    e.preventDefault();
+    copyText(state.items[b.dataset.id].raw);
+  });
 }
 
 function syncToolbar() {
@@ -518,8 +534,8 @@ function get_configs(isBase64 = false) {
 
       syncToolbar();
       applyFilters();
-      // auto-test the first page so the user sees live statuses immediately
-      runTests(state.view.slice(0, PAGE_SIZE), false);
+      // No auto-test on load: each probe is 2 requests to a third-party host, so
+      // testing is opt-in (Find best / Test visible).
     })
     .catch(() => {
       tbody.innerHTML = `<tr><td colspan="5" class="empty-row danger"><i class="bx bx-error-circle"></i> Failed to load configs</td></tr>`;
@@ -529,6 +545,12 @@ function get_configs(isBase64 = false) {
 // Rest of the code remains the same...
 function get_contributors() {
   const contributors = document.querySelector("#contributors");
+  // Inline handler kept out of the markup so a strict CSP does not break it.
+  const FALLBACK_AVATAR =
+    "data:image/svg+xml;utf8," +
+    encodeURIComponent(
+      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="32" fill="#24292f"/><circle cx="32" cy="24" r="11" fill="#fff"/><path d="M11 62c0-11.6 9.4-21 21-21s21 9.4 21 21z" fill="#fff"/></svg>'
+    );
   var x = "";
   fetch(contributors_url)
     .then((response) => response.json())
@@ -543,7 +565,7 @@ function get_contributors() {
           <a href="${contributor.html_url}" target="_blank">
           <img
             src="${contributor.avatar_url}"
-            onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2732%27 fill=%27%2324292f%27/%3E%3Cg transform=%27translate(10 10) scale(2.75)%27 fill=%27%23fff%27%3E%3Cpath d=%27M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z%27/%3E%3C/g%3E%3C/svg%3E'"
+            data-fallback="1"
 
             alt="${contributor.login}"
             style="width: 3rem; border-radius: 20%"
@@ -560,6 +582,13 @@ function get_contributors() {
       });
 
       contributors.innerHTML = x;
+      contributors
+        .querySelectorAll("img[data-fallback]")
+        .forEach((img) =>
+          img.addEventListener("error", () => (img.src = FALLBACK_AVATAR), {
+            once: true,
+          })
+        );
     })
     .catch((error) => {
       // console.error(error);

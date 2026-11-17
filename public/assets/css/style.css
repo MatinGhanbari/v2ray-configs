@@ -444,6 +444,13 @@ main .recent-order a {
   border-radius: var(--border-radius-1);
 }
 
+/* Keyboard focus for controls that are not native buttons */
+.right .theme-toggle:focus-visible,
+.copy-btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
 /* PROFILE */
 .right .top .profile {
   display: flex;
